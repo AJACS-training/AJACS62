@@ -20,7 +20,7 @@
 
 ### プログラム
 #### 9月1日(木)
-10:05～11:35 「[NBDCの紹介とNBDCが提供するサービス](https://github.com/AJACS-training/AJACS62/blob/master/01_mori/)」  
+10:05～11:35 「[NBDCの紹介とNBDCが提供するサービス](https://github.com/AJACS-training/AJACS62/blob/master/01_minowa/)」  
 箕輪 真理  
 (科学技術振興機構 バイオサイエンスデータベースセンター / 情報・システム研究機構 データサイエンス共同利用基盤施設 ライフサイエンス統合データベースセンター)  
 
