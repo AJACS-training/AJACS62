@@ -188,7 +188,7 @@ SRAに登録されたデータを再利用したい場合には、データを�
 コンピュータを用いたデータ解析に不慣れな方向けに、多くの教材や書籍、講習会などがあります。自分のデータを自分で解析してみたいという場合には、以下を参考にしてみてください。
 
 - 統合データベース講習会
-  - 講習資料と公園動画が [統合TV - togotv.dbcls.jp](http://togotv.dbcls.jp) から公開されています。
+  - 講習資料と講演動画が [統合TV - togotv.dbcls.jp](http://togotv.dbcls.jp) から公開されています。
 - NGSハンズオン講習会
   - http://biosciencedbc.jp/human/human-resources/workshop/h28-2
 - DDBJが提供するオンラインの解析サービスの使い方
