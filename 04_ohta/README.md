@@ -64,34 +64,34 @@ Database Center for Life Science (DBCLS), Joint Support-Center for Data Science 
 
 ### どのように使われているか
 
-![NGS DNA extraction](./images/seq_flow_00.png)
+![NGS DNA extraction](https://raw.githubusercontent.com/AJACS-training/AJACS62/master/04_ohta/images/seq_flow_00.png)
 
 新型シーケンサはサンプルDNAを入力として処理し、DNA塩基配列をデータとして出力します。新型シーケンサはサンガー法のように長い塩基配列を読めない代わりに、大量の塩基配列を並列に読むことで高いスループットを実現します。ほとんどの場合、抽出されたDNAは断片化され、シーケンス反応用のプライマーを処理したのちにシーケンサーにかけられます。
 
-![NGS DNA extraction](./images/seq_flow_01.png)
+![NGS DNA extraction](https://raw.githubusercontent.com/AJACS-training/AJACS62/master/04_ohta/images/seq_flow_01.png)
 
 シーケンサーから出力される一次データ (primary data, 生データ) はこの断片化された配列 (リード) の情報です。そのため、出力されたデータは、そのままでは生物学的な解釈ができません。そこで、新型シーケンサのデータを研究に利用するためには、リードを元の塩基配列に復元する必要があります。復元の方法には大きく2つの方法があり、出力されたリード情報のみを使う場合と、同じ生物種もしくは近縁種のゲノムDNAを参照する場合があります。前者を Assembly, 後者を Reference Alignment (mapping) と呼びます。
 
-![NGS DNA extraction](./images/seq_flow_02.png)
+![NGS DNA extraction](https://raw.githubusercontent.com/AJACS-training/AJACS62/master/04_ohta/images/seq_flow_02.png)
 
 復元された塩基配列に対して、多型検出や発現量推定など、目的に応じた特徴抽出、注釈付けを行ったのち、サンプル間での統計検定を行うことで、研究データとしての解釈が可能になります。
 
-![NGS DNA extraction](./images/seq_flow_03.png)
+![NGS DNA extraction](https://raw.githubusercontent.com/AJACS-training/AJACS62/master/04_ohta/images/seq_flow_03.png)
 
 このように、一口に「新型シーケンサーを使う」と言っても目的に応じて解釈までに様々な異なるステップを経る必要があります。目的がはっきりしていなければデータが出ても何をしていいのか分からなくなってしまいますし、逆に、目的に応じて様々な使い方をすることができる機械であるとも言えます。
 
-![NGS sample to figure](./images/ngs_flow_0.png)
+![NGS sample to figure](https://raw.githubusercontent.com/AJACS-training/AJACS62/master/04_ohta/images/ngs_flow_0.png)
 
 この講習では、シーケンサから出力された一次データに生物学的な注釈付を行うまでを「データ処理」、その後の統計処理などを「データ解析」と呼び分けています。人によっては両者をまとめて「データ解析」と呼ぶ場合もあります。(この講習の次の[NGSデータから新たな知識を導出するための高次解析](https://github.com/AJACS-training/AJACS62/tree/master/05_ozaki)では、データ処理の部分を「低次解析」、データ解析の部分を「高次解析」と呼んでいます)ソフトウェアによってはデータ処理とデータ解析を一括で行うものもあります。
 
-![NGS sample to figure with location](./images/ngs_flow_1.png)
+![NGS sample to figure with location](https://raw.githubusercontent.com/AJACS-training/AJACS62/master/04_ohta/images/ngs_flow_1.png)
 
 サンプルからDNAを抽出するまではベンチワークです。単にゲノムDNAを抽出する場合もあれば、ゲノムDNAを処理して部分的に抽出したり、サンプルから抽出したRNAをDNAに逆転写したものをシーケンサーに入力として与えることもあります。詳しくは後述の「シーケンシング・アプリケーションについて」を参照してください。シーケンサーから出力されたデータから、プロットや表などの結果データを生成するまでの過程はコンピュータ上の操作が必要です。新型シーケンサーから得られるデータは一般にデータサイズが大きいため、従来のサンガーシーケンサーとは扱いが異なりますが、必要とされる計算機のスペックはサンプルの数、データのサイズ、サンプル生物種のゲノムサイズなどの要因によって異なります。
 
 
 ### シーケンサー機器について
 
-![developments-in-high-throughput-sequencing-july-2016-edition](./images/developments_in_high_throughput_sequencing.jpg)
+![developments-in-high-throughput-sequencing-july-2016-edition](https://raw.githubusercontent.com/AJACS-training/AJACS62/master/04_ohta/images/developments_in_high_throughput_sequencing.jpg)
 
 新型シーケンサーから得られる塩基配列データのリードの長さや量は、機器と試薬のアップデートによって年々変化しています。また、コストあたりに得られるデータ量も変化しています。上の図は2016年7月時点でのシーケンサー各社の公称スペックをプロットしたものです (引用: Developments in high throughput sequencing – July 2016 edition, https://flxlexblog.wordpress.com/2016/07/08/developments-in-high-throughput-sequencing-july-2016-edition/ )。新型シーケンサーのデータを得る、もしくはデータベースに登録されたデータを利用するためには、機器の違いを理解し、目的に応じて選択する必要があります。
 
@@ -100,7 +100,7 @@ Database Center for Life Science (DBCLS), Joint Support-Center for Data Science 
 
 DNA抽出の方法を工夫することで、新型シーケンサーの高い並列度を活かした様々な分子の計測を行うことができます。前述の通り、全ゲノムDNAを与える場合 (Whole Genome Sequencing, WGS) やエクソン領域を増幅するキットを利用した Exome シーケンス、転写物をキャプチャして逆転写したDNAをシーケンスする RNA-Seq 、chromatin immunoprecipitation によって得られたDNA領域をシーケンスする ChIP-Seq などその種類は非常に多岐に渡ります。
 
-![*-Seq](./images/seq.png)
+![*-Seq](https://raw.githubusercontent.com/AJACS-training/AJACS62/master/04_ohta/images/seq.png)
 
 アプリケーションの詳細を知るためには、手法についての論文を当たることが最も確実です。次の資料は Illumina 社によってまとめられたものです。
 
@@ -108,11 +108,11 @@ DNA抽出の方法を工夫することで、新型シーケンサーの高い�
 
 それぞれのシーケンシング・アプリケーションにおける実験手技およびデータ処理・解析については、[次世代シークエンス解析スタンダード〜NGSのポテンシャルを活かしきるWET&DRY](http://www.amazon.co.jp/dp/4758101914/ref=cm_sw_r_tw_dp_40sGub0Q8C567)という書籍にもまとめられています。各シーケンス・アプリケーションがライブラリ調製から丁寧に解説してあり、非常に参考になります。新型シーケンサーについて日本語の情報が必要な場合はまずこの一冊を購入しましょう。
 
-![dritoshi-book](./images/itoshisaninzeidenikuogottekure.png)
+![dritoshi-book](https://raw.githubusercontent.com/AJACS-training/AJACS62/master/04_ohta/images/itoshisaninzeidenikuogottekure.png)
 
 ### 得られるデータについて
 
-![File format](./images/seq_flow_04.png)
+![File format](https://raw.githubusercontent.com/AJACS-training/AJACS62/master/04_ohta/images/seq_flow_04.png)
 
 新型シーケンサのデータは一次データ (リード) から Assemble, Reference Alignment などのデータ処理、特徴抽出やアノテーションなどのデータ解析を経る中で、様々なファイルフォーマットで保存されます。ソフトウェアごとにどのフォーマットを入力/出力にするかが大抵の場合決まっているので、フォーマットを理解しておくことが重要です。
 
@@ -126,11 +126,11 @@ DNA抽出の方法を工夫することで、新型シーケンサーの高い�
 
 シーケンサーから得られたデータはデータ処理、データ解析を経て可視化され、可視化されたデータは論文あるいは何かしらのアウトプットの一部となることが一般的です。
 
-![NGS flow and after, ideal](./images/ngs_flow_2.png)
+![NGS flow and after, ideal](https://raw.githubusercontent.com/AJACS-training/AJACS62/master/04_ohta/images/ngs_flow_2.png)
 
 しかし、現在ではほとんどの論文誌において、論文に用いた一次データ (つまりシーケンサから得られたデータ処理前のデータ) は *投稿前に* 公共データレポジトリに登録してアクセッション番号を取得する必要があります。
 
-![NGS flow and after, true](./images/ngs_flow_3.png)
+![NGS flow and after, true](https://raw.githubusercontent.com/AJACS-training/AJACS62/master/04_ohta/images/ngs_flow_3.png)
 
 配列データを公共データレポジトリのサーバに送信し、サンプルやシーケンス実験についてのメタデータをガイドラインに従って記述する必要があります。つまり、発表された論文で使われたデータは (理想的には) その全てがオンラインで公開されていることになります。
 
@@ -148,15 +148,15 @@ DNA抽出の方法を工夫することで、新型シーケンサーの高い�
 
 3つの機関はそれぞれが独自にデータの登録・検索のシステムを公開・運用していますが、登録されたデータは3つの機関で交換され共有されています。
 
-![NCBI SRA](./images/sra_ncbi.png)
+![NCBI SRA](https://raw.githubusercontent.com/AJACS-training/AJACS62/master/04_ohta/images/sra_ncbi.png)
 
 [NCBI SRA - www.ncbi.nlm.nih.gov/sra](http://www.ncbi.nlm.nih.gov/sra)
 
-![EBI SRA](./images/sra_ebi.png)
+![EBI SRA](https://raw.githubusercontent.com/AJACS-training/AJACS62/master/04_ohta/images/sra_ebi.png)
 
 [EBI ENA - ebi.ac.uk/ena](http://ebi.ac.uk/ena)
 
-![DDBJ SRA](./images/sra_ddbj.png)
+![DDBJ SRA](https://raw.githubusercontent.com/AJACS-training/AJACS62/master/04_ohta/images/sra_ddbj.png)
 
 [DDBJ DRA - trace.ddbj.nig.ac.jp/dra](http://trace.ddbj.nig.ac.jp/dra)
 
@@ -193,15 +193,15 @@ SRAにデータを登録するためには、データがどのようにレポ�
 
 配列データやメタデータにサンプルを提供した個人が特定可能な情報が含まれている場合には、データアクセスに許可が必要なデータ、すなわち controlled access データとなります。アクセスするための許可を得る方法は、登録されているデータレポジトリ、およびデータセットごとに異なります。また、 fastq データではなく変異情報のサマリーデータのみが登録される場合もあります。
 
-![NCBI dbGaP](./images/indv_ncbi.png)
+![NCBI dbGaP](https://raw.githubusercontent.com/AJACS-training/AJACS62/master/04_ohta/images/indv_ncbi.png)
 
 [NCBI dbGaP - www.ncbi.nlm.nih.gov/gap](https://www.ncbi.nlm.nih.gov/gap)
 
-![EBI EGA](./images/indv_ebi.png)
+![EBI EGA](https://raw.githubusercontent.com/AJACS-training/AJACS62/master/04_ohta/images/indv_ebi.png)
 
 [EBI EGA - www.ebi.ac.uk/ega/](https://www.ebi.ac.uk/ega/)
 
-![NBDC JGA](./images/indv_nbdc.png)
+![NBDC JGA](https://raw.githubusercontent.com/AJACS-training/AJACS62/master/04_ohta/images/indv_nbdc.png)
 
 [NCBI JGA - humandbs.biosciencedbc.jp](http://humandbs.biosciencedbc.jp)
 
@@ -227,17 +227,17 @@ SRAに登録されたデータを再利用したい場合には、データを�
 
 #### ChIP-Atlas
 
-![ChIP-Atlas](./images/ca_0.png)
+![ChIP-Atlas](https://raw.githubusercontent.com/AJACS-training/AJACS62/master/04_ohta/images/ca_0.png)
 
 [ChIP-Atlas](http://chip-atlas.org) は 九州大医学部 発生再生研究室 と DBCLS によって開発・運用されているデータベースです。SRAで公開された ChIP-Seq, DNase-Seq のデータに定型処理を行い、その結果データに基いて様々な解析結果を公開しています。
 
-![ChIP-Atlas Peak Browser](./images/ca_1.png)
+![ChIP-Atlas Peak Browser](https://raw.githubusercontent.com/AJACS-training/AJACS62/master/04_ohta/images/ca_1.png)
 
-![ChIP-Atlas in silico ChIP](./images/ca_2.png)
+![ChIP-Atlas in silico ChIP](https://raw.githubusercontent.com/AJACS-training/AJACS62/master/04_ohta/images/ca_2.png)
 
 #### wPGSA
 
-![wpgsa.org](./images/wpgsa.png)
+![wpgsa.org](https://raw.githubusercontent.com/AJACS-training/AJACS62/master/04_ohta/images/wpgsa.png)
 
 [wPGSA online](http://wpgsa.org) は 理化学研究所 医科学イノベーションハブ推進プログラム 川上上級研究員と DBCLS のコラボレーションで開発・運用しているウェブサービスです。遺伝子発現データを入力として与えると、与えられた発現データに関与している転写因子の予測を行います。この手法では、SRAに登録されたChIP-Seqデータの再解析結果が利用されています。
 
@@ -245,13 +245,13 @@ SRAに登録されたデータを再利用したい場合には、データを�
 
 [MicrobeDB.jp](http://microbedb.jp/) は統合データベースプロジェクト・微生物統合データベースによって開発・運用されているデータベースです。SRAで公開されている メタ16S、メタゲノム、メタトランスクリプトームなどのデータの解析データが蓄積されており、ブラウザ上で可視化することができます。
 
-![MicrobeDB.jp](./images/mdb_0.png)
+![MicrobeDB.jp](https://raw.githubusercontent.com/AJACS-training/AJACS62/master/04_ohta/images/mdb_0.png)
 
-![MicrobeDB.jp entry](./images/mdb_1.png)
+![MicrobeDB.jp entry](https://raw.githubusercontent.com/AJACS-training/AJACS62/master/04_ohta/images/mdb_1.png)
 
 #### EBI RESTful RNA-seq Analysis API
 
-![EBI RNA-Seq](./images/ebi-rna.png)
+![EBI RNA-Seq](https://raw.githubusercontent.com/AJACS-training/AJACS62/master/04_ohta/images/ebi-rna.png)
 
 EBI RNA-Seq Analysis API は、SRAに登録されたもののうち、264生物種、265,000のシーケンスデータを解析した結果データを取得することができるサービスです。bigWig, bedGraph, FPKM, TPM などの情報を取ることができます (が、現在サービスが停止しているようでアクセスができません…)。
 
